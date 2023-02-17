@@ -24,7 +24,7 @@ def apply_gate(gate, target_qubit, state):
             else:
                 gate_tensor = np.kron(gate_tensor, np.eye(2))
 
-    assert np.shape(gate) == (2, 2), "Gate must be a 2x2 matrix." # Check that the gate is a 2x2 matrix
+    state_matrix = state.reshape((2 ** target_qubit[1], 2 ** (num_qubits - target_qubit[1])))
     assert 0 <= target_qubit[0] < num_qubits, f"Target qubit index must be between 0 and {num_qubits - 1}." # Check that the target qubit index is valid
 
     # Compute the tensor product of the gate with the identity matrix on all qubits except the target qubit
